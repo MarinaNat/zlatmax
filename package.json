@@ -2,6 +2,7 @@
 	"name": "fls-start",
 	"version": "3.0.0",
 	"description": "Start template with Gulp and Webpack",
+	"homepage": "https://marinanat.github.io/zlatmax/",
 	"author": "FLS",
 	"private": true,
 	"license": "GNU General Public License (GPL)",
@@ -12,7 +13,8 @@
 		"build": "gulp build --build",
 		"sprite": "gulp sprite",
 		"fonts": "gulp fonts --rewrite",
-		"deploy": "gulp deployFTP --build",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist",
 		"zip": "gulp deployZIP --build",
 		"devbuild": "gulp build --build --nowebp",
 		"tmp": "gulp -f gulpfile.tmp.js"
