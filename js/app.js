@@ -63,10 +63,10 @@
       }
     },
     o = !0,
-    i = (t = 500) => {
-      document.documentElement.classList.contains("lock") ? n(t) : l(t);
-    },
     n = (t = 500) => {
+      document.documentElement.classList.contains("lock") ? i(t) : r(t);
+    },
+    i = (t = 500) => {
       let e = document.querySelector("body");
       if (o) {
         let s = document.querySelectorAll("[data-lp]");
@@ -83,7 +83,7 @@
           }, t);
       }
     },
-    l = (t = 500) => {
+    r = (t = 500) => {
       let e = document.querySelector("body");
       if (o) {
         let s = document.querySelectorAll("[data-lp]");
@@ -104,12 +104,12 @@
           }, t);
       }
     };
-  function r(t) {
+  function a(t) {
     setTimeout(() => {
       window.FLS && console.log(t);
     }, 0);
   }
-  function a(t, e) {
+  function l(t, e) {
     const s = Array.from(t).filter(function (t, s, o) {
       if (t.dataset[e]) return t.dataset[e].split(",")[0];
     });
@@ -117,9 +117,9 @@
       const t = [];
       s.forEach((s) => {
         const o = {},
-          i = s.dataset[e].split(",");
-        (o.value = i[0]),
-          (o.type = i[1] ? i[1].trim() : "max"),
+          n = s.dataset[e].split(",");
+        (o.value = n[0]),
+          (o.type = n[1] ? n[1].trim() : "max"),
           (o.item = s),
           t.push(o);
       });
@@ -133,20 +133,20 @@
           return s.indexOf(t) === e;
         });
       })(o);
-      const i = [];
+      const n = [];
       if (o.length)
         return (
           o.forEach((e) => {
             const s = e.split(","),
               o = s[1],
-              n = s[2],
-              l = window.matchMedia(s[0]),
-              r = t.filter(function (t) {
-                if (t.value === o && t.type === n) return !0;
+              i = s[2],
+              r = window.matchMedia(s[0]),
+              a = t.filter(function (t) {
+                if (t.value === o && t.type === i) return !0;
               });
-            i.push({ itemsArray: r, matchMedia: l });
+            n.push({ itemsArray: a, matchMedia: r });
           }),
-          i
+          n
         );
     }
   }
@@ -314,7 +314,7 @@
             this.options.classes.popupActive
           ),
           document.body.classList.add(this.options.classes.bodyActive),
-          this._reopen ? (this._reopen = !1) : i(),
+          this._reopen ? (this._reopen = !1) : n(),
           this.targetOpen.element.setAttribute("aria-hidden", "false"),
           (this.previousOpen.selector = this.targetOpen.selector),
           (this.previousOpen.element = this.targetOpen.element),
@@ -353,7 +353,7 @@
           this.previousOpen.element.setAttribute("aria-hidden", "true"),
           this._reopen ||
             (document.body.classList.remove(this.options.classes.bodyActive),
-            i(),
+            n(),
             (this.isOpen = !1)),
           this._removeHash(),
           this._selectorOpen &&
@@ -403,7 +403,7 @@
         : t[0].focus();
     }
     popupLogging(t) {
-      this.options.logging && r(`[Попапос]: ${t}`);
+      this.options.logging && a(`[Попапос]: ${t}`);
     }
   })({});
   t.mousePrlx = new (class {
@@ -424,41 +424,174 @@
         const e = t.closest("[data-prlx-mouse-wrapper]"),
           s = t.dataset.prlxCx ? +t.dataset.prlxCx : 100,
           o = t.dataset.prlxCy ? +t.dataset.prlxCy : 100,
-          i = t.hasAttribute("data-prlx-dxr") ? -1 : 1,
-          n = t.hasAttribute("data-prlx-dyr") ? -1 : 1,
-          l = t.dataset.prlxA ? +t.dataset.prlxA : 50;
-        let r = 0,
-          a = 0,
+          n = t.hasAttribute("data-prlx-dxr") ? -1 : 1,
+          i = t.hasAttribute("data-prlx-dyr") ? -1 : 1,
+          r = t.dataset.prlxA ? +t.dataset.prlxA : 50;
+        let a = 0,
+          l = 0,
           c = 0,
           p = 0;
-        function h(e = window) {
+        function u(e = window) {
           e.addEventListener("mousemove", function (e) {
             const s = t.getBoundingClientRect().top + window.scrollY;
             if (s >= window.scrollY || s + t.offsetHeight >= window.scrollY) {
               const t = window.innerWidth,
                 s = window.innerHeight,
                 o = e.clientX - t / 2,
-                i = e.clientY - s / 2;
-              (c = (o / t) * 100), (p = (i / s) * 100);
+                n = e.clientY - s / 2;
+              (c = (o / t) * 100), (p = (n / s) * 100);
             }
           });
         }
         !(function e() {
-          (r += ((c - r) * l) / 1e3),
-            (a += ((p - a) * l) / 1e3),
-            (t.style.cssText = `transform: translate3D(${(i * r) / (s / 10)}%,${
-              (n * a) / (o / 10)
+          (a += ((c - a) * r) / 1e3),
+            (l += ((p - l) * r) / 1e3),
+            (t.style.cssText = `transform: translate3D(${(n * a) / (s / 10)}%,${
+              (i * l) / (o / 10)
             }%,0);`),
             requestAnimationFrame(e);
         })(),
-          e ? h(e) : h();
+          e ? u(e) : u();
       });
     }
     setLogging(t) {
-      this.config.logging && r(`[PRLX Mouse]: ${t}`);
+      this.config.logging && a(`[PRLX Mouse]: ${t}`);
     }
   })({});
-  (window.FLS = !0),
+  function c(t) {
+    this.type = t;
+  }
+  (c.prototype.init = function () {
+    const t = this;
+    (this.оbjects = []),
+      (this.daClassname = "_dynamic_adapt_"),
+      (this.nodes = document.querySelectorAll("[data-da]"));
+    for (let t = 0; t < this.nodes.length; t++) {
+      const e = this.nodes[t],
+        s = e.dataset.da.trim().split(","),
+        o = {};
+      (o.element = e),
+        (o.parent = e.parentNode),
+        (o.destination = document.querySelector(s[0].trim())),
+        (o.breakpoint = s[1] ? s[1].trim() : "767"),
+        (o.place = s[2] ? s[2].trim() : "last"),
+        (o.index = this.indexInParent(o.parent, o.element)),
+        this.оbjects.push(o);
+    }
+    this.arraySort(this.оbjects),
+      (this.mediaQueries = Array.prototype.map.call(
+        this.оbjects,
+        function (t) {
+          return (
+            "(" + this.type + "-width: " + t.breakpoint + "px)," + t.breakpoint
+          );
+        },
+        this
+      )),
+      (this.mediaQueries = Array.prototype.filter.call(
+        this.mediaQueries,
+        function (t, e, s) {
+          return Array.prototype.indexOf.call(s, t) === e;
+        }
+      ));
+    for (let e = 0; e < this.mediaQueries.length; e++) {
+      const s = this.mediaQueries[e],
+        o = String.prototype.split.call(s, ","),
+        n = window.matchMedia(o[0]),
+        i = o[1],
+        r = Array.prototype.filter.call(this.оbjects, function (t) {
+          return t.breakpoint === i;
+        });
+      n.addListener(function () {
+        t.mediaHandler(n, r);
+      }),
+        this.mediaHandler(n, r);
+    }
+  }),
+    (c.prototype.mediaHandler = function (t, e) {
+      if (t.matches)
+        for (let t = 0; t < e.length; t++) {
+          const s = e[t];
+          (s.index = this.indexInParent(s.parent, s.element)),
+            this.moveTo(s.place, s.element, s.destination);
+        }
+      else
+        for (let t = e.length - 1; t >= 0; t--) {
+          const s = e[t];
+          s.element.classList.contains(this.daClassname) &&
+            this.moveBack(s.parent, s.element, s.index);
+        }
+    }),
+    (c.prototype.moveTo = function (t, e, s) {
+      e.classList.add(this.daClassname),
+        "last" === t || t >= s.children.length
+          ? s.insertAdjacentElement("beforeend", e)
+          : "first" !== t
+          ? s.children[t].insertAdjacentElement("beforebegin", e)
+          : s.insertAdjacentElement("afterbegin", e);
+    }),
+    (c.prototype.moveBack = function (t, e, s) {
+      e.classList.remove(this.daClassname),
+        void 0 !== t.children[s]
+          ? t.children[s].insertAdjacentElement("beforebegin", e)
+          : t.insertAdjacentElement("beforeend", e);
+    }),
+    (c.prototype.indexInParent = function (t, e) {
+      const s = Array.prototype.slice.call(t.children);
+      return Array.prototype.indexOf.call(s, e);
+    }),
+    (c.prototype.arraySort = function (t) {
+      "min" === this.type
+        ? Array.prototype.sort.call(t, function (t, e) {
+            return t.breakpoint === e.breakpoint
+              ? t.place === e.place
+                ? 0
+                : "first" === t.place || "last" === e.place
+                ? -1
+                : "last" === t.place || "first" === e.place
+                ? 1
+                : t.place - e.place
+              : t.breakpoint - e.breakpoint;
+          })
+        : Array.prototype.sort.call(t, function (t, e) {
+            return t.breakpoint === e.breakpoint
+              ? t.place === e.place
+                ? 0
+                : "first" === t.place || "last" === e.place
+                ? 1
+                : "last" === t.place || "first" === e.place
+                ? -1
+                : e.place - t.place
+              : e.breakpoint - t.breakpoint;
+          });
+    });
+  new c("max").init(),
+    document.addEventListener("click", function (t) {
+      const e = t.target;
+      if (e.closest("[data-parent]")) {
+        const s = e.dataset.parent ? e.dataset.parent : null,
+          o = document.querySelector(`[data-submenu="${s}"]`);
+        document.querySelector(".catalog-header");
+        if (o) {
+          const t = document.querySelector("._sub-menu-active"),
+            s = document.querySelector("._sub-menu-open");
+          t &&
+            t !== e &&
+            (t.classList.remove("_sub-menu-active"),
+            s.classList.remove("_sub-menu-open")),
+            e.classList.toggle("_sub-menu-active"),
+            o.classList.toggle("_sub-menu-open");
+        } else console.log("Ой ой, нет такого подменю :(");
+        t.preventDefault();
+      }
+    });
+  const p = document.querySelectorAll(".sub-menu-catalog__block");
+  p.length &&
+    p.forEach((t) => {
+      const e = t.querySelectorAll(".sub-menu-catalog__category").length;
+      t.classList.add(`sub-menu-catalog__block_${e}`);
+    }),
+    (window.FLS = !0),
     (function (t) {
       let e = new Image();
       (e.onload = e.onerror =
@@ -476,7 +609,7 @@
       t &&
         t.addEventListener("click", function (t) {
           o &&
-            (i(),
+            (n(),
             document.documentElement.classList.toggle("menu-open"),
             document.documentElement.classList.contains("catalog-open") &&
               document.documentElement.classList.remove("catalog-open"),
@@ -490,21 +623,21 @@
         const o = Array.from(t).filter(function (t, e, s) {
           return !t.dataset.spollers.split(",")[0];
         });
-        o.length && n(o);
-        let i = a(t, "spollers");
-        function n(t, e = !1) {
+        o.length && i(o);
+        let n = l(t, "spollers");
+        function i(t, e = !1) {
           t.forEach((t) => {
             (t = e ? t.item : t),
               e.matches || !e
                 ? (t.classList.add("_spoller-init"),
-                  l(t),
-                  t.addEventListener("click", r))
+                  r(t),
+                  t.addEventListener("click", a))
                 : (t.classList.remove("_spoller-init"),
-                  l(t, !1),
-                  t.removeEventListener("click", r));
+                  r(t, !1),
+                  t.removeEventListener("click", a));
           });
         }
-        function l(t, e = !0) {
+        function r(t, e = !0) {
           let s = t.querySelectorAll("[data-spoller]");
           s.length &&
             ((s = Array.from(s).filter(
@@ -519,18 +652,18 @@
                   (t.nextElementSibling.hidden = !1));
             }));
         }
-        function r(t) {
+        function a(t) {
           const o = t.target;
           if (o.closest("[data-spoller]")) {
-            const i = o.closest("[data-spoller]"),
-              n = i.closest("[data-spollers]"),
-              l = !!n.hasAttribute("data-one-spoller");
-            n.querySelectorAll("._slide").length ||
-              (l && !i.classList.contains("_spoller-active") && c(n),
-              i.classList.toggle("_spoller-active"),
+            const n = o.closest("[data-spoller]"),
+              i = n.closest("[data-spollers]"),
+              r = !!i.hasAttribute("data-one-spoller");
+            i.querySelectorAll("._slide").length ||
+              (r && !n.classList.contains("_spoller-active") && c(i),
+              n.classList.toggle("_spoller-active"),
               ((t, o = 500) => {
                 t.hidden ? s(t, o) : e(t, o);
-              })(i.nextElementSibling, 500)),
+              })(n.nextElementSibling, 500)),
               t.preventDefault();
           }
         }
@@ -540,13 +673,13 @@
             (s.classList.remove("_spoller-active"),
             e(s.nextElementSibling, 500));
         }
-        i &&
-          i.length &&
-          i.forEach((t) => {
+        n &&
+          n.length &&
+          n.forEach((t) => {
             t.matchMedia.addEventListener("change", function () {
-              n(t.itemsArray, t.matchMedia);
+              i(t.itemsArray, t.matchMedia);
             }),
-              n(t.itemsArray, t.matchMedia);
+              i(t.itemsArray, t.matchMedia);
           });
       }
     })();
