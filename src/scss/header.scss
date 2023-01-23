@@ -13,24 +13,37 @@
 		align-items: center;
 		gap: rem(20);
 		min-height: rem(50);
+		@media (max-width: $tablet) {
+			gap: rem(30);
+		}
 	}
 	&__menu {
 		flex: 1 1 auto;
 	}
 	&__user {
+		position: relative;
+		z-index: 5;
 		display: inline-flex;
 		align-items: center;
 		font-weight: 600;
 		line-height: math.div(22, 18);
+		gap: em(15, 28);
 		&::before {
 			font-size: rem(28);
-			margin-right: em(15, 28);
 		}
 		@media (any-hover: hover) {
 			&:hover {
 				span {
 					text-decoration: underline;
 				}
+			}
+		}
+		@media (max-width: $tablet) {
+			&::before {
+				font-size: rem(35);
+			}
+			span {
+				display: none;
 			}
 		}
 	}
@@ -63,6 +76,7 @@
 		}
 		&_catalog {
 			display: flex;
+			align-items: center;
 			flex-direction: row-reverse;
 			justify-content: space-between;
 			&::before {
@@ -71,12 +85,16 @@
 				justify-content: start;
 				align-items: center;
 				font-size: rem(8);
-				transform: rotate(-90deg);
+				transform: translateY(rem(2)) rotate(-90deg);
 			}
 		}
 		@media (max-width: $tablet) {
-			@include adaptiveValue("font-size", 30, 18, 992, 320, 1);
+			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+			flex-direction: row;
 		}
+	}
+	@media (max-width: $tablet) {
+		display: none;
 	}
 }
 
@@ -88,16 +106,33 @@
 			width: 100%;
 			height: 100%;
 			top: 0;
-			left: 0;
+			left: -100%;
 			overflow: auto;
 			background-color: $mainDarkColor;
-			padding: rem(80) rem(15) rem(50) rem(15);
+			padding: rem(100) rem(15) rem(50) rem(15);
+			transition: left 0.3s ease 0s;
 			z-index: 4;
+			&::before {
+				content: "";
+				position: fixed;
+				width: 100%;
+				height: 70px;
+				left: -100%;
+				top: 0;
+				background-color: $mainDarkColor;
+			}
+			.menu-open & {
+				left: 0;
+				&::before {
+					left: 0;
+				}
+			}
 		}
 	}
 	@media (max-width: $tablet) {
-		flex: 0 0 30px;
-		display: block;
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: flex-end;
 	}
 }
 
@@ -105,11 +140,16 @@
 .body-header {
 	padding: rem(10) 0;
 	background-color: #ecf1f2;
-
 	&__container {
 		display: flex;
 		min-height: rem(70);
 		align-items: center;
+		@media (max-width: $tablet) {
+			justify-content: space-between;
+		}
+		@media (max-width: $mobileSmall) {
+			padding-left: rem(32);
+		}
 	}
 	&__logo {
 		@extend %ic;
@@ -120,17 +160,26 @@
 
 	&__search {
 		flex: 1 1 auto;
-		padding-right: rem(20);
 		@include adaptiveValue("padding-left", 158, 20, 1620, 1250, 1);
+		@media (min-width: $tablet) {
+			padding-right: rem(20);
+		}
+		@media (min-width: $mobileSmall) {
+			@include adaptiveValue("padding-left", 158, 20, 1620, 1250, 1);
+		}
+	}
+	&__actions {
 	}
 }
 //============================
 .search-header {
-	max-width: rem(377);
 	background-color: rgba(7, 7, 7, 0.03);
 	border-radius: 3px;
 	position: relative;
 	border: 1px solid rgba(4, 4, 4, 0.5);
+	@media (min-width: $tablet) {
+		max-width: rem(377);
+	}
 
 	&__buttom {
 		background-color: transparent;
@@ -156,12 +205,18 @@
 			color: rgba(0, 0, 0, 0.5);
 		}
 	}
+	@media (max-width: $mobileSmall) {
+		background-color: #fff;
+	}
 }
 
 //==================================
 .actions-header {
 	display: flex;
 	align-items: center;
+	@media (max-width: $tablet) {
+		display: none;
+	}
 	@include adaptiveValue("column-gap", 30, 15, 1629, 1000, 1);
 	&__location {
 		display: inline-flex;
@@ -184,6 +239,8 @@
 	&__phones {
 	}
 	&__favorite {
+		position: relative;
+		z-index: 5;
 		font-size: rem(27);
 	}
 	&__cart {
@@ -193,6 +250,8 @@
 
 //============================
 .phones-header {
+	position: relative;
+	z-index: 5;
 	&__items {
 	}
 	&__item {
@@ -203,6 +262,23 @@
 		font-weight: 600;
 		white-space: nowrap;
 		line-height: math.div(22, 18);
+		&::before {
+			@extend %ic;
+			@extend ._icon-footer-phone;
+			display: none;
+		}
+		@media (max-width: $tablet) {
+			font-size: rem(25);
+		}
+		@media (max-width: $mobileSmall) {
+			&::before {
+				display: block;
+				font-size: rem(35);
+			}
+			span {
+				display: none;
+			}
+		}
 	}
 	&__arrow {
 		color: $mainOrange;
@@ -211,6 +287,9 @@
 		transition: transform 0.3s em(17, 16);
 		&._spoller-active {
 			transform: rotate(-180deg);
+		}
+		@media (max-width: $tablet) {
+			display: none;
 		}
 	}
 	&__list {
@@ -229,6 +308,9 @@
 				margin-bottom: em(8, 18);
 			}
 		}
+		@media (max-width: $tablet) {
+			display: none;
+		}
 	}
 	&__callback {
 		margin: rem(3) 0px 0px 0px;
@@ -240,6 +322,9 @@
 				text-decoration: underline;
 			}
 		}
+		@media (max-width: $tablet) {
+			display: none;
+		}
 	}
 }
 
@@ -247,6 +332,8 @@
 	display: flex;
 	column-gap: 15px;
 	align-items: center;
+	position: relative;
+	z-index: 5;
 	&__icon {
 		flex: 0 0 37px;
 		font-size: rem(35);
@@ -300,25 +387,34 @@
 	}
 	&__menu {
 	}
+	@media (max-width: $mobileSmall) {
+		padding: rem(20) 0;
+	}
 }
 
 .menu-catalog {
 	&__list {
 		display: flex;
-		gap: 10px;
+		column-gap: 10px;
 		justify-content: space-between;
+		@media (max-width: $tablet) {
+			flex-direction: column;
+			row-gap: rem(25);
+		}
 	}
 	&__item {
 	}
 	&__link {
-		min-height: rem(70);
-		padding: 0px rem(10);
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
 		position: relative;
 		transition: color 0.3s ease 0s;
+		@media (min-width: $tablet) {
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			min-height: rem(70);
+			padding: 0px rem(10);
+		}
 		&::after {
 			opacity: 0;
 			visibility: hidden;
@@ -347,12 +443,37 @@
 				visibility: visible;
 			}
 		}
+		@media (max-width: $tablet) {
+			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+		}
 	}
 	&__sub-menu {
 		width: 100%;
 		left: 0;
 		top: 100%;
 		background-color: $mainDarkColor;
+	}
+	&__back {
+		display: none;
+		@media (max-width: $tablet) {
+			display: inline-flex;
+			align-items: center;
+		}
+	}
+	@media (max-width: $tablet) {
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: $mainDarkColor;
+		padding: rem(100) rem(15) rem(50) rem(15);
+		transition: left 0.3s ease 0s;
+		.catalog-open & {
+			left: 0;
+			z-index: 6;
+		}
 	}
 }
 
@@ -426,10 +547,10 @@
 	@media (max-width: $tablet) {
 		display: block;
 		position: relative;
-		width: 30px;
-		height: 18px;
+		width: 40px;
+		height: 22.5px;
 		cursor: pointer;
-		z-index: 5;
+		z-index: 10;
 		span,
 		&::before,
 		&::after {

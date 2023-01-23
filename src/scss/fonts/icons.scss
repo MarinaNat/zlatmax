@@ -15,7 +15,7 @@
   }
 }
 
-._icon-arrow-buttom:before {
+._icon-arrow-bottom:before {
   content: "\e900";
 }
 ._icon-basket:before {
@@ -26,6 +26,12 @@
 }
 ._icon-favorite:before {
   content: "\e903";
+}
+._icon-footer-clock:before {
+  content: "\e904";
+}
+._icon-footer-email:before {
+  content: "\e905";
 }
 ._icon-footer-location:before {
   content: "\e906";
@@ -50,4 +56,7 @@
 }
 ._icon-user:before {
   content: "\e90d";
+}
+._icon-back:before {
+  content: "\e90e";
 }
