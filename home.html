@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230119224716">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230123214447">
 	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +50,7 @@
 			<div class="header__body body-header">
 				<div class="body-header__container">
 					<a href="" class="body-header__logo"></a>
-					<div class="body-header__search">
+					<div data-da=".catalog-header__container,479.98" class="body-header__search">
 						<form action="#" class="search-header">
 							<button type="submit" class="search-header__buttom _icon-search"></button>
 							<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Поиск" class="search-header__input" />
@@ -58,10 +58,12 @@
 					</div>
 					<div class="body-header__actions actions-header">
 						<a href="" class="actions-header__location _icon-location"><span>Москва</span></a>
-						<div class="actions-header__phones phones-header">
+						<div data-da=".top-header__container,991.98, first" class="actions-header__phones phones-header">
 							<div data-spollers class="phones-header__items">
 								<div class="phones-header__item">
-									<a href="tel:88007774967" class="phones-header__phone">8-800-777-49-67</a>
+									<a href="tel:88007774967" class="phones-header__phone">
+										<span>8-800-777-49-67</span>
+									</a>
 									<button type="button" data-spoller class="phones-header__arrow _icon-arrow-buttom"></button>
 									<ul class="phones-header__list">
 										<li>
@@ -80,8 +82,8 @@
 								Заказать звонок
 							</button>
 						</div>
-						<a href="" class="actions-header__favorite _icon-favorite"></a>
-						<a href="" class="actions-header__cart cart-header">
+						<a href="" data-da=".top-header__container,991.98,2" class="actions-header__favorite _icon-favorite"></a>
+						<a href="" data-da=".top-header__container,991.98,2" class="actions-header__cart cart-header">
 							<div class="cart-header__icon _icon-basket"><span>0</span></div>
 							<div class="cart-header__body">
 								<div class="cart-header__summ">0 p.</div>
@@ -94,6 +96,9 @@
 			<div class="header__catalog catalog-header">
 				<div class="catalog-header__container">
 					<nav class="catalog-header__menu menu-catalog">
+						<button type="button" class="menu-catalog__back _icon-back">
+							Назад
+						</button>
 						<ul class="menu-catalog__list">
 							<li class="menu-catalog__item">
 								<button data-parent="1" class="menu-catalog__link">
@@ -116,6 +121,9 @@
 							</li>
 						</ul>
 						<div class="menu-catalog__sub-menu sub-menu-catalog">
+							<button type="button" class="sub-menu-catalog__back _icon-back">
+								Назад
+							</button>
 							<div class="sub-menu-catalog__container">
 								<div hidden data-submenu="1" class="sub-menu-catalog__block">
 									<div class="sub-menu-catalog__category">
@@ -391,7 +399,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20230119224716"></script>
+	<script src="js/app.min.js?_v=20230123214447"></script>
 </body>
 
 </html>

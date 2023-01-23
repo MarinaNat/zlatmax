@@ -584,6 +584,9 @@
         } else console.log("Ой ой, нет такого подменю :(");
         t.preventDefault();
       }
+      e.closest(".menu-top-header__link_catalog") &&
+        (document.documentElement.classList.add("catalog-open"),
+        t.preventDefault());
     });
   const p = document.querySelectorAll(".sub-menu-catalog__block");
   p.length &&
